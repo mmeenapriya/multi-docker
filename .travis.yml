@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker 
+
+before_install:
+  - docker bulid -t meenapriya/multi-docker -f ./client/Dockerfile.dev ./client
+
+
+script:
+  - docker run meenapriya/multi-docker npm test -- --coverage
+
+after_success:
+  - docker build -t meenapriyam/multi-client ./client
+  - docker build -t meenapriya/multi-nginx ./nginx 
+  - docker build -t meenapriya/multi-server ./server
+  - docker build -t meenapriya/multi-worker ./worker 
+  # Log in to the docker CLI 
+  - echo "$DOCKER_PASSWORD" | docker login - u "$DOCKER_ID" --password-stdin
+  # Take those images and push to docker hub 
+  - docker push meenapriyam/multi-client 
+  - docker push meenapriyam/multi-nginx 
+  - docker push meenapriyam/multi-server 
+  - docker push meenapriyam/multi-worker 
