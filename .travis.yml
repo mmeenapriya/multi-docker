@@ -7,17 +7,17 @@ before_install:
 
 
 script:
-  - docker run meenapriya/multi-docker npm test -- --coverage
+  - docker run mmeenapriya/multi-docker npm test -- --coverage
 
 after_success:
-  - docker build -t meenapriyam/multi-client ./client
-  - docker build -t meenapriya/multi-nginx ./nginx 
-  - docker build -t meenapriya/multi-server ./server
-  - docker build -t meenapriya/multi-worker ./worker 
+  - docker build -t mmeenapriya/multi-client ./client
+  - docker build -t mmeenapriya/multi-nginx ./nginx 
+  - docker build -t mmeenapriya/multi-server ./server
+  - docker build -t mmeenapriya/multi-worker ./worker 
   # Log in to the docker CLI 
   - echo "$DOCKER_PASSWORD" | docker login - u "$DOCKER_ID" --password-stdin
   # Take those images and push to docker hub 
-  - docker push meenapriyam/multi-client 
-  - docker push meenapriyam/multi-nginx 
-  - docker push meenapriyam/multi-server 
-  - docker push meenapriyam/multi-worker 
+  - docker push mmeenapriya/multi-client 
+  - docker push mmeenapriya/multi-nginx 
+  - docker push mmeenapriya/multi-server 
+  - docker push mmeenapriya/multi-worker 
