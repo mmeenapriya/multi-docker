@@ -3,7 +3,7 @@ services:
   - docker 
 
 before_install:
-  - docker build -t meenapriya/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t mmeenapriya/multi-docker -f ./client/Dockerfile.dev ./client
 
 
 script:
