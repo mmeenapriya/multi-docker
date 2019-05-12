@@ -23,7 +23,7 @@ after_success:
   - docker push mmeenapriya/multi-worker 
 
 deploy:
-  provider: elasticbeastalk 
+  provider: elasticbeanstalk 
   region: us-east-1
   app: multi-docker
   env: MultiDocker-env
@@ -34,4 +34,3 @@ deploy:
   access_key_id : $AWS_ACCESS_KEY
   secret_acces_key :
     secure: $AWS_SECRET_KEY
-    
